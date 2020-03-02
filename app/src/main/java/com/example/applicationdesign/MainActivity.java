@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         Button activityBtn = (Button)findViewById(R.id.activityBtn);
         Button settingBtn = (Button)findViewById(R.id.settingBtn);
 
-        new JSONTask().execute("http://18.222.200.247:3306/location");
+        new JSONTask().execute("IP주소");
 
 
         gpsBtn.setOnClickListener(new View.OnClickListener() {
