@@ -9,9 +9,11 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class PairingOk extends AppCompatActivity {
 
+    TextView deviceName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +23,10 @@ public class PairingOk extends AppCompatActivity {
         setTitle("내 기기 찾기");
         ActionBar actionBar= getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+        deviceName = (TextView)findViewById(R.id.deviceName);
+        Intent intent = getIntent();
+        deviceName.setText("연결된 기기: " + intent.getStringExtra("deviceName"));
 
         Button connectBtn = (Button)findViewById(R.id.connectbtn);
         connectBtn.setOnClickListener(new View.OnClickListener() {

@@ -51,4 +51,16 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:targetApi="11"/>
 
+    <TextView
+        android:id="@+id/deviceName"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:gravity="center_horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
