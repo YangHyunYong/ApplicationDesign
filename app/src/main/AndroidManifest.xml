@@ -32,13 +32,12 @@
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <meta-data
-            android:name="APIname"
-            android:value="API키" />
+            android:name="API_KEY_NAME"
+            android:value="API_KEY" />
 
     </application>
 

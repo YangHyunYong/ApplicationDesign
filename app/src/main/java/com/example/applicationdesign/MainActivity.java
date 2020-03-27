@@ -38,11 +38,12 @@ public class MainActivity extends AppCompatActivity {
 
         new JSONTask().execute("IP주소");
 
-
         gpsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),showGPSActivity.class);
+                intent.putExtra("lat",lat);
+                intent.putExtra("lon",lon);
                 startActivity(intent);
             }
         });
@@ -79,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
                     //입력 스트림 생성
                     InputStream stream = con.getInputStream();
+
 
                     //속도를 향상시키고 부하를 줄이기 위한 버퍼를 선언한다.
                     reader = new BufferedReader(new InputStreamReader(stream));
@@ -134,17 +136,11 @@ public class MainActivity extends AppCompatActivity {
                         longtitudeList.add(jsonObject.getString("lon"));
                         lat = latitudeList.get(latitudeList.size() - 1);
                         lon = longtitudeList.get(longtitudeList.size() - 1);
-
-                        Intent intent = new Intent(getApplicationContext(),showGPSActivity.class);
-                        intent.putExtra("lat",lat);
-                        intent.putExtra("lon",lon);
-                        startActivity(intent);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
         }
-
     }
 }

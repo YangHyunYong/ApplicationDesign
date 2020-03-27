@@ -22,13 +22,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class showGPSActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     List<Address> list = null;
     TextView gpsText;
     String lat, lon;
+    double d1=0, d2 = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +70,7 @@ public class showGPSActivity extends AppCompatActivity implements OnMapReadyCall
         markerOptions.snippet("박인효양현용한승훈");
         mMap.addMarker(markerOptions);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(SEOUL, 15));
+
     }
 
     @Override
