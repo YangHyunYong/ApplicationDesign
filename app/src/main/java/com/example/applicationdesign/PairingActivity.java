@@ -314,11 +314,11 @@ public class PairingActivity extends AppCompatActivity {
         dataPaired.clear();
         if(pairedDevice.size() > 0){
             for(BluetoothDevice device : pairedDevice){
-//                //데이터 저장
-//                Map map = new HashMap();
-//                map.put("name", device.getName()); //device.getName() : 블루투스 디바이스의 이름
-//                map.put("address", device.getAddress()); //device.getAddress() : 블루투스 디바이스의 MAC 주소
-//                dataPaired.add(map);
+                //데이터 저장
+                Map map = new HashMap();
+                map.put("name", device.getName()); //device.getName() : 블루투스 디바이스의 이름
+                map.put("address", device.getAddress()); //device.getAddress() : 블루투스 디바이스의 MAC 주소
+                dataPaired.add(map);
             }
         }
         //리스트 목록갱신

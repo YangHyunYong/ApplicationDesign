@@ -21,7 +21,6 @@
         <activity android:name=".AmountDiaryActivity" />
         <activity android:name=".AmountInfoActivity" />
         <activity android:name=".SetRangeActivity" />
-        <activity android:name=".ShowRouteActivity" />
         <activity android:name=".showGPSActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".PairingOk" />

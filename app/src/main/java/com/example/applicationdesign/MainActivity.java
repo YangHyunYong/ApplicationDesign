@@ -26,7 +26,9 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<String> latitudeList = new ArrayList<>();
     ArrayList<String> longtitudeList = new ArrayList<>();
-    String lat, lon;
+
+    ArrayList<String> latList = new ArrayList<>();
+    ArrayList<String> lngList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),showGPSActivity.class);
-                intent.putExtra("lat",lat);
-                intent.putExtra("lon",lon);
+                intent.putExtra("latList",latList);
+                intent.putExtra("lngList",lngList);
                 startActivity(intent);
             }
         });
@@ -132,10 +134,8 @@ public class MainActivity extends AppCompatActivity {
                     JSONArray jsonArray = new JSONArray(result);
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        latitudeList.add(jsonObject.getString("lat"));
-                        longtitudeList.add(jsonObject.getString("lon"));
-                        lat = latitudeList.get(latitudeList.size() - 1);
-                        lon = longtitudeList.get(longtitudeList.size() - 1);
+                        latList.add(jsonObject.getString("lat"));
+                        lngList.add(jsonObject.getString("lon"));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
