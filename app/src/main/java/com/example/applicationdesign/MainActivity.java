@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     public class JSONTask extends AsyncTask<String, String, String> {
         @Override
         protected String doInBackground(String... urls) {

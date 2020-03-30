@@ -58,13 +58,17 @@ public class PairingActivity extends AppCompatActivity {
     List<Map<String,String>> dataDevice;
     List<BluetoothDevice> bluetoothDevices;
     int selectDevice;
-
+    String userEmail = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pairing);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        Intent intents = getIntent();
+        userEmail = intents.getStringExtra("email");
+
         setSupportActionBar(toolbar);
         setTitle("내 기기 찾기");
         ActionBar actionBar= getSupportActionBar();
@@ -167,7 +171,10 @@ public class PairingActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(),PairingOk.class);
                 Map map2 = (Map)dataPaired.get(0);
                 String name = (String)map2.get("name");
+                String deviceAddress = (String)map2.get("address");
                 intent.putExtra("deviceName",name);
+                intent.putExtra("deviceAddress",deviceAddress);
+                intent.putExtra("email",userEmail);
                 startActivity(intent);
             }
         });

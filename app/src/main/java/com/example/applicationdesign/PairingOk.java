@@ -14,6 +14,9 @@ import android.widget.TextView;
 public class PairingOk extends AppCompatActivity {
 
     TextView deviceName;
+    String userEmail = null;
+    String deviceAddress = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,16 +26,22 @@ public class PairingOk extends AppCompatActivity {
         setTitle("내 기기 찾기");
         ActionBar actionBar= getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-
         deviceName = (TextView)findViewById(R.id.deviceName);
         Intent intent = getIntent();
-        deviceName.setText("연결된 기기: " + intent.getStringExtra("deviceName"));
+        final String device = intent.getStringExtra("deviceName");
+        userEmail = intent.getStringExtra("email");
+        deviceAddress = intent.getStringExtra("deviceAddress");
+
+        deviceName.setText("연결된 기기: " + device);
 
         Button connectBtn = (Button)findViewById(R.id.connectbtn);
         connectBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),RegisterActivity.class);
+                intent.putExtra("deviceName",device);
+                intent.putExtra("deviceAddress",deviceAddress);
+                intent.putExtra("email",userEmail);
                 startActivity(intent);
             }
         });

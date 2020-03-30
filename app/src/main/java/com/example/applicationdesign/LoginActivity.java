@@ -74,18 +74,18 @@ public class LoginActivity extends AppCompatActivity {
         final View enter_name_view = LayoutInflater.from(this).inflate(R.layout.enter_name_layout,null);
 
         new MaterialStyledDialog.Builder(this)
-                .setTitle("Register")
-                .setDescription("One more step!")
+                .setTitle("회원가입")
+                .setDescription("가입할 Email, PW를 입력하셨나요?")
                 .setCustomView(enter_name_view)
                 .setIcon(R.drawable.ic_action_name)
-                .setNegativeText("Cancel")
+                .setNegativeText("취소")
                 .onNegative(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         dialog.dismiss();
                     }
                 })
-                .setPositiveText("Register")
+                .setPositiveText("가입하기")
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
@@ -113,6 +113,7 @@ public class LoginActivity extends AppCompatActivity {
                         if(s.contains("encrypted_password")) {
                             Toast.makeText(LoginActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(),PairingActivity.class);
+                            intent.putExtra("email",edit_email.getText().toString());
                             startActivity(intent);
                         }
                         else
