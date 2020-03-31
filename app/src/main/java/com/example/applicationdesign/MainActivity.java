@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<String> latList = new ArrayList<>();
     ArrayList<String> lngList = new ArrayList<>();
-
+    TextView childName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
         Button gpsBtn = (Button)findViewById(R.id.gpsBtn);
         Button activityBtn = (Button)findViewById(R.id.activityBtn);
         Button settingBtn = (Button)findViewById(R.id.settingBtn);
+        childName = (TextView)findViewById(R.id.child_name);
+        Intent intent = getIntent();
+        childName.setText(intent.getStringExtra("childName")+" 아기");
 
         new JSONTask().execute("IP주소");
 

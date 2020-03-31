@@ -24,4 +24,7 @@ public interface INodeJS {
                                                   @Field("c_height") String c_height,
                                                   @Field("c_weight") String c_weight,
                                                   @Field("c_age") String c_age);
+    @POST("checkDevice")
+    @FormUrlEncoded
+    io.reactivex.Observable<String> checkDevice(@Field("email") String email);
 }

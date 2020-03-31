@@ -92,6 +92,7 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void accept(String s) throws Exception {
                         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                        intent.putExtra("childName",edt_childName.getText().toString());
                         startActivity(intent);
                     }
                 }));

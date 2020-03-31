@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -30,6 +31,8 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText edit_email, edit_password;
     Button btn_register, btn_login;
+
+    Boolean check=false;
 
     @Override
     protected void onStop() {
@@ -60,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loginUser(edit_email.getText().toString(),edit_password.getText().toString());
+               checkDevice(edit_email.getText().toString());
             }
         });
         btn_register.setOnClickListener(new View.OnClickListener() {
@@ -110,14 +113,40 @@ public class LoginActivity extends AppCompatActivity {
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
-                        if(s.contains("encrypted_password")) {
+                        if(s.contains("encrypted_password")&&!check) {
                             Toast.makeText(LoginActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(),PairingActivity.class);
-                            intent.putExtra("email",edit_email.getText().toString());
+                            check=false;
+                            Intent intent = new Intent(getApplicationContext(), PairingActivity.class);
+                            intent.putExtra("email", edit_email.getText().toString());
                             startActivity(intent);
                         }
-                        else
+                        if(s.contains("encrypted_password")&&check) {
+                            Toast.makeText(LoginActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
+                            check=false;
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(intent);
+                        }
+                    }
+                })
+        );
+    }
+
+    private void checkDevice(String email) {
+        compositeDisposable.add(myAPI.checkDevice(email)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String s) throws Exception {
+                        if(s.contains("device_name")) {
+                            check = true;
                             Toast.makeText(LoginActivity.this, ""+s, Toast.LENGTH_SHORT).show();
+
+                            loginUser(edit_email.getText().toString(), edit_password.getText().toString());
+                        }
+                        else{
+                            loginUser(edit_email.getText().toString(), edit_password.getText().toString());
+                        }
                     }
                 })
         );
