@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     Button btn_register, btn_login;
 
     Boolean check=false;
-
+    String c_name=null;
     @Override
     protected void onStop() {
         compositeDisposable.clear();
@@ -124,6 +124,7 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
                             check=false;
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            intent.putExtra("childName",c_name);
                             startActivity(intent);
                         }
                     }
@@ -138,13 +139,14 @@ public class LoginActivity extends AppCompatActivity {
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
-                        if(s.contains("device_name")) {
-                            check = true;
+                        if(s.contains("User not exists!")) {
                             Toast.makeText(LoginActivity.this, ""+s, Toast.LENGTH_SHORT).show();
-
                             loginUser(edit_email.getText().toString(), edit_password.getText().toString());
                         }
                         else{
+                            check = true;
+                            c_name = s;
+                            c_name = c_name.substring(1,c_name.length()-1);
                             loginUser(edit_email.getText().toString(), edit_password.getText().toString());
                         }
                     }

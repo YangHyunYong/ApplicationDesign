@@ -39,8 +39,10 @@ public class MainActivity extends AppCompatActivity {
         Button activityBtn = (Button)findViewById(R.id.activityBtn);
         Button settingBtn = (Button)findViewById(R.id.settingBtn);
         childName = (TextView)findViewById(R.id.child_name);
+
         Intent intent = getIntent();
-        childName.setText(intent.getStringExtra("childName")+" 아기");
+        String c_name = intent.getStringExtra("childName");
+        childName.setText(c_name+" 아기");
 
         new JSONTask().execute("IP주소");
 
